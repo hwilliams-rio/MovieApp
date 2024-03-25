@@ -9,7 +9,7 @@ import { Movie } from "../types/MovieTypes";
 
 async function GetMoviesAPI() {
   try {
-    const response = await fetch("http://localhost:5106/Movies");
+    const response = await fetch("https://localhost:7146/Movies/GetAllMovies");
     if (!response.ok) {
       throw new Error("Failed to fetch movies");
     }
@@ -44,22 +44,18 @@ function Home() {
 
   return (
     <div className="App">
-      <Box sx={{ flexGrow: 0 }}>
-        <Grid container justifyContent="center" alignItems="center">
-          <Grid item xs={5} margin={2}>
-            <AddMovie />
-          </Grid>
-        </Grid>
-        <Box margin={4}>
-          <SearchMovie movies={data} onInputChange={setInputValue} />
+      <Box>
+        <AddMovie />
+        <Box margin={2}>
+          <SearchMovie onInputChange={setInputValue} />
         </Box>
-        <Grid container justifyContent="center" alignItems="center" margin={4}>
+        <Box margin={4}>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
             {filteredMovies.map((movie: Movie) => (
               <MovieCard key={movie.title} movie={movie} />
             ))}
           </Box>
-        </Grid>
+        </Box>
       </Box>
     </div>
   );

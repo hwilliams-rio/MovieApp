@@ -26,7 +26,7 @@ export function AddMovie() {
 
   async function AddMovieAPI(data: Movie) {
     try {
-      const response = await fetch("http://localhost:5106/Movies", {
+      const response = await fetch("https://localhost:7146/Movies/AddMovie", {
         ...requestOptions,
         body: JSON.stringify(data),
       });
@@ -50,14 +50,14 @@ export function AddMovie() {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box component="form" onSubmit={handleSubmit(onSubmit)} >
       <Box margin={2}>
         <Controller
           name="title"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
-              fullWidth
+            sx={{ width: { sm: 200, md: 300 } }}
               {...field}
               label="Title"
               variant="outlined"
@@ -73,7 +73,7 @@ export function AddMovie() {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
-              fullWidth
+            sx={{ width: { sm: 200, md: 300 } }}
               multiline
               {...field}
               label="Description"
