@@ -3,6 +3,9 @@ import { Box, Grid } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { MovieCard } from "../components/MovieCard";
 import { AddMovie } from "../components/AddMovie";
+import { SearchMovie } from "../components/SearchMovie";
+import { useState } from "react";
+import { Movie } from "../types/MovieTypes";
 
 async function GetMoviesAPI() {
   try {
@@ -18,10 +21,18 @@ async function GetMoviesAPI() {
 }
 
 function Home() {
+  const [inputValue, setInputValue] = useState("");
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["movies"],
     queryFn: GetMoviesAPI,
   });
+
+  const filteredMovies = data
+    ? data.filter((movie: Movie) =>
+        movie.title.toLowerCase().includes(inputValue.toLowerCase())
+      )
+    : [];
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -39,9 +50,15 @@ function Home() {
             <AddMovie />
           </Grid>
         </Grid>
-
+        <Box margin={4}>
+          <SearchMovie movies={data} onInputChange={setInputValue} />
+        </Box>
         <Grid container justifyContent="center" alignItems="center" margin={4}>
-          <MovieCard movies={data} />
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+            {filteredMovies.map((movie: Movie) => (
+              <MovieCard key={movie.title} movie={movie} />
+            ))}
+          </Box>
         </Grid>
       </Box>
     </div>

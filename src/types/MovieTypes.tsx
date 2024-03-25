@@ -3,6 +3,6 @@ export type Movie = {
   description: string;
 };
 
-export type MovieCardProps = {
+export type Movies = {
   movies: Array<Movie>;
 };

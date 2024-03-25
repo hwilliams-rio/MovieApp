@@ -85,7 +85,7 @@ export function AddMovie() {
         />
       </Box>
       <Box margin={2}>
-      {error && <Alert severity="error">{errorMessage}</Alert>}
+        {error && <Alert severity="error">{errorMessage}</Alert>}
       </Box>
       <Button type="submit" variant="contained">
         Submit
