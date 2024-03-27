@@ -1,11 +1,10 @@
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
-import { Movie } from "../types/MovieTypes";
+import { Movie, Movies } from "../types/MovieTypes";
 import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-
 // can't figure this one out
-export function MovieCard({ movie }: any) {
+export function MovieCard({ movie }: { movie: Movie }) {
   const queryClient = useQueryClient(); // Get the query client
 
   async function RemoveMovieAPI(movieId: number) {
@@ -37,19 +36,17 @@ export function MovieCard({ movie }: any) {
           {movie.description}
         </Typography>
         <Grid container spacing={2}>
-          <Grid item >
+          <Grid item>
             <Typography variant="body2" color="text.secondary">
               Like
-              
             </Typography>
-            </Grid>
-            <Grid item >
+          </Grid>
+          <Grid item>
             <Typography variant="body2" color="text.secondary">
               Dislike
-              
             </Typography>
-            </Grid>
           </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );
