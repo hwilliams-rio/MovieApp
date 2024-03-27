@@ -7,7 +7,7 @@ import useMovieMutations from "../hooks/MovieMutations";
 import { movieSchema } from "../validation/AddMovieSchema";
 
 export function AddMovie() {
-  const { mutate, isError, error } = useMovieMutations(); // Use the custom hook
+  const { mutate, isError, error } = useMovieMutations(); 
 
   const { control, handleSubmit } = useForm<Movie>({
     resolver: yupResolver(movieSchema),

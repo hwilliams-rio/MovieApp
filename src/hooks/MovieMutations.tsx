@@ -11,7 +11,7 @@ const useMovieMutations = () => {
         },
         onError: (error) => {
             // Handle submission error here
-            console.log('Error submitting post:', error.message);
+            console.error('Error submitting post:', error.message);
           }
     });
 };
