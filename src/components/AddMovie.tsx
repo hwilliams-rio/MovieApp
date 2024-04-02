@@ -3,7 +3,7 @@ import { TextField, Box, Button, Alert } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Movie } from "../types/MovieTypes";
-import useMovieMutations from "../hooks/MovieMutations";
+import useMovieMutations from "../hooks/MovieMutation";
 import { movieSchema } from "../validation/AddMovieSchema";
 
 export function AddMovie() {

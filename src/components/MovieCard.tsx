@@ -1,14 +1,18 @@
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import { Movie, Movies } from "../types/MovieTypes";
-import React from "react";
-import { RemoveMovieAPI } from "../apis/RemoveMovie";
+import useRemoveMovieMutation from "../hooks/RemoveMovieMutation";
 
 export function MovieCard({ movie }: { movie: Movie }) {
+  const removeMovie = useRemoveMovieMutation();
+
+  const handleDelete = async () => {
+    removeMovie.mutate(movie.id);
+  };
 
   return (
     <Card sx={{ maxWidth: 345 }} key={movie.title}>
       <CardContent>
-        <Button onClick={() => RemoveMovieAPI(movie.id)}>Delete</Button>
+        <Button onClick={handleDelete}>Delete</Button>
         <Typography gutterBottom variant="h5" component="div">
           {movie.title}
         </Typography>

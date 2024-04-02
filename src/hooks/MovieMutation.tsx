@@ -6,11 +6,9 @@ const useMovieMutations = () => {
     return useMutation({
         mutationFn: AddMovieAPI,
         onSuccess: () => {
-            // If response is successful, refetch movies
-            queryClient.refetchQueries({ queryKey: ["movies"] });
+            queryClient.invalidateQueries({ queryKey: ["movies"] });
         },
         onError: (error) => {
-            // Handle submission error here
             console.error('Error submitting post:', error.message);
           }
     });
