@@ -4,21 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import { MovieCard } from "../components/MovieCard";
 import { AddMovie } from "../components/AddMovie";
 import { SearchMovie } from "../components/SearchMovie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Movie } from "../types/MovieTypes";
-
-async function GetMoviesAPI() {
-  try {
-    const response = await fetch("https://localhost:7146/Movies/GetAllMovies");
-    if (!response.ok) {
-      throw new Error("Failed to fetch movies");
-    }
-    return response.json();
-  } catch (error) {
-    console.error("Error fetching movies:", error);
-    throw error;
-  }
-}
+import { GetMoviesAPI } from "../apis/GetMovies";
 
 function Home() {
   const [inputValue, setInputValue] = useState("");
