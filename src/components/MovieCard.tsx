@@ -1,12 +1,12 @@
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import { Movie, Movies } from "../types/MovieTypes";
-import useRemoveMovieMutation from "../hooks/RemoveMovieMutation";
+import  useMovieMutations from "../hooks/useMovieMutations";
 
 export function MovieCard({ movie }: { movie: Movie }) {
-  const removeMovie = useRemoveMovieMutation();
+  const { removeMovieMutation } = useMovieMutations();
 
   const handleDelete = async () => {
-    removeMovie.mutate(movie.id);
+    removeMovieMutation.mutate(movie.id);
   };
 
   return (
